@@ -1,1 +1,0 @@
-remove / in index.html in before css and JS path (e.g. /static/css.. -> static/css..)
