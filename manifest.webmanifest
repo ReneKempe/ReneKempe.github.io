@@ -2,7 +2,7 @@
   "name": "NFC Reader",
   "short_name": "NFC Reader",
   "description": "NFC Reader",
-  "start_url": "index.aspx",
+  "start_url": "index.html",
   "display": "standalone",
   "scope": ".",
   "orientation":"portrait",
