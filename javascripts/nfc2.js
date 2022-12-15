@@ -5,9 +5,10 @@ async function readTag() {
         await ndef.scan();
         ndef.onreading = event => {
             consoleLog("Serial number:  " + event.serialNumber);
-            consoleLog("Serial number:  " + event.record[1]);
+            const decoder = new TextDecoder();
+            consoleLog("Record 1:  " + decoder.decode(event.record[1].data));
 
-          const decoder = new TextDecoder();
+        //  const decoder = new TextDecoder();
           for (const record of event.message.records) {
             consoleLog("Record type:  " + record.recordType);
            // consoleLog("MIME type:    " + record.mediaType);
