@@ -5,6 +5,7 @@ async function readTag() {
         await ndef.scan();
         ndef.onreading = event => {
             consoleLog("Serial number:  " + event.serialNumber);
+            consoleLog("Serial number:  " + event.record[1]);
 
           const decoder = new TextDecoder();
           for (const record of event.message.records) {
