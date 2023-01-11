@@ -6,11 +6,11 @@ async function readTag() {
         ndef.onreading = event => {
             consoleLog("Serial number:  " + event.serialNumber);
             const decoder = new TextDecoder();
-            consoleLog("Record 1 content:  " + decoder.decode(event.message.records[0].data)); console.log(validateURL(decoder.decode(event.message.records[0].data)));
+            consoleLog("Record 1 content:  " + decoder.decode(event.message.records[0].data)); consoleLog(validateURL(decoder.decode(event.message.records[0].data)));
             consoleLog("Record 2 content:  " + decoder.decode(event.message.records[1].data));
             consoleLog("Record 3 content:  " + decoder.decode(event.message.records[2].data));
             consoleLog("Record 4 content:  " + decoder.decode(event.message.records[3].data));
-            consoleLog("Record 5 content:  " + decoder.decode(event.message.records[4].data)); console.log(validateManufacturyDate(decoder.decode(event.message.records[4].data)));
+            consoleLog("Record 5 content:  " + decoder.decode(event.message.records[4].data)); consoleLog(validateManufacturyDate(decoder.decode(event.message.records[4].data)));
         
         //   for (const record of event.message.records) {
         //     consoleLog("Record type:  " + record.recordType);
