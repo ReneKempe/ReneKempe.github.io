@@ -6,11 +6,11 @@ async function readTag() {
         ndef.onreading = event => {
             consoleLog("Serial number:  " + event.serialNumber);
             const decoder = new TextDecoder();
-            consoleLog("Record 1 content:  " + decoder.decode(event.message.records[0].data)); consoleLog(validateURL(decoder.decode(event.message.records[0].data)));
-            consoleLog("Record 2 content:  " + decoder.decode(event.message.records[1].data));
-            consoleLog("Record 3 content:  " + decoder.decode(event.message.records[2].data));
-            consoleLog("Record 4 content:  " + decoder.decode(event.message.records[3].data));
-            consoleLog("Record 5 content:  " + decoder.decode(event.message.records[4].data)); consoleLog(validateManufacturyDate(decoder.decode(event.message.records[4].data)));
+            consoleLog("Record 0 (URI):  " + decoder.decode(event.message.records[0].data)); consoleLog(validateURL(decoder.decode(event.message.records[0].data)));
+            consoleLog("Record 1 (Data Info):  " + decoder.decode(event.message.records[1].data)); consoleLog(validateDataInfo(decoder.decode(event.message.records[1].data)));
+            consoleLog("Record 2 (Product Info 1):  " + decoder.decode(event.message.records[2].data));
+            consoleLog("Record 3 (Signature):  " + decoder.decode(event.message.records[3].data));
+            consoleLog("Record 5 (Product Info 2):  " + decoder.decode(event.message.records[4].data)); consoleLog(validateMD(decoder.decode(event.message.records[4].data)));
         
         //   for (const record of event.message.records) {
         //     consoleLog("Record type:  " + record.recordType);
@@ -26,11 +26,14 @@ async function readTag() {
     }
   }
   
-
+//not working yet:
 function validateURL(str){
     return str.match(/^https:\/\/www\.sanofi\.com\/nfc-label-platform$/i) !== null;
 }
-function validateManufacturyDate(str){
+function validateDataInfo(str){
+  return str.match(/^1[a-zA-Z][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]%%$/i) !== null;
+}
+function validateMD(str){
   return str.match(/^[0-9]+__\d[a-zA-Z]\d\d\d[a-zA-Z]$/i) !== null; //e.g. 5112206301723123110__2F000A
 }
 
